@@ -1,0 +1,5 @@
+{
+  "name": "Abet's 3D Chess",
+  "description": "A fully interactive 3D chess game featuring a rotatable board, local multiplayer support, move validation, and procedural 3D piece rendering.",
+  "requestFramePermissions": []
+}
