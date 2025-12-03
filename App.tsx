@@ -184,6 +184,9 @@ function App() {
         inCheck={game.inCheck()}
         isCheckmate={game.isCheckmate()}
         isDraw={game.isDraw()}
+        isStalemate={game.isStalemate()}
+        isThreefoldRepetition={game.isThreefoldRepetition()}
+        isInsufficientMaterial={game.isInsufficientMaterial()}
       />
 
       <Canvas shadows camera={{ position: [0, 8, 8], fov: 45 }}>

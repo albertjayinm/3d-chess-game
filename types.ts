@@ -1,4 +1,5 @@
 import { Square } from 'chess.js';
+import React from 'react';
 
 export type PieceType = 'p' | 'n' | 'b' | 'r' | 'q' | 'k';
 export type PieceColor = 'w' | 'b';
@@ -19,4 +20,32 @@ export interface ThemeColors {
   highlight: string;
   check: string;
   moveHint: string;
+}
+
+interface ThreeElements {
+  ambientLight: any;
+  pointLight: any;
+  spotLight: any;
+  group: any;
+  mesh: any;
+  meshStandardMaterial: any;
+  meshBasicMaterial: any;
+  cylinderGeometry: any;
+  sphereGeometry: any;
+  boxGeometry: any;
+  torusGeometry: any;
+  coneGeometry: any;
+  ringGeometry: any;
+}
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements extends ThreeElements {}
+  }
+}
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements extends ThreeElements {}
+  }
 }

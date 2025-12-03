@@ -11,6 +11,9 @@ interface ControlsProps {
   inCheck: boolean;
   isCheckmate: boolean;
   isDraw: boolean;
+  isStalemate: boolean;
+  isThreefoldRepetition: boolean;
+  isInsufficientMaterial: boolean;
 }
 
 export const Controls: React.FC<ControlsProps> = ({ 
@@ -21,10 +24,33 @@ export const Controls: React.FC<ControlsProps> = ({
   turn, 
   inCheck, 
   isCheckmate, 
-  isDraw 
+  isDraw,
+  isStalemate,
+  isThreefoldRepetition,
+  isInsufficientMaterial
 }) => {
   const winner = turn === 'w' ? 'Black' : 'White';
   
+  let title = '';
+  let subtitle = '';
+
+  if (isCheckmate) {
+      title = 'CHECKMATE!';
+      subtitle = `${winner} Wins`;
+  } else if (isStalemate) {
+      title = 'STALEMATE';
+      subtitle = 'Draw';
+  } else if (isInsufficientMaterial) {
+      title = 'DRAW';
+      subtitle = 'Insufficient Material';
+  } else if (isThreefoldRepetition) {
+      title = 'DRAW';
+      subtitle = 'Threefold Repetition';
+  } else if (isDraw) {
+      title = 'DRAW';
+      subtitle = '50-Move Rule';
+  }
+
   return (
     <div className="absolute top-0 left-0 w-full p-6 pointer-events-none flex flex-col justify-between h-full z-10">
       {/* Header */}
@@ -73,17 +99,10 @@ export const Controls: React.FC<ControlsProps> = ({
                 ? 'bg-red-500/90 border-red-400 scale-110' 
                 : 'bg-slate-900/80 border-slate-700'}
             `}>
-            {isCheckmate ? (
                 <div className="text-center">
-                <h2 className="text-3xl font-extrabold text-white">CHECKMATE!</h2>
-                <p className="text-white/90 font-medium mt-1">{winner} Wins</p>
+                    <h2 className="text-3xl font-extrabold text-white">{title}</h2>
+                    <p className="text-white/90 font-medium mt-1">{subtitle}</p>
                 </div>
-            ) : (
-                <div className="text-center">
-                <h2 className="text-2xl font-bold text-white">DRAW</h2>
-                <p className="text-white/90">Stalemate / Insufficient Material</p>
-                </div>
-            )}
             </div>
         )}
       </div>
